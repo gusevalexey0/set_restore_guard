@@ -19,8 +19,9 @@ struct set_restore_guard {
         var = new_value;
     }
     void set(T& var, T const& new_value) {
+        clear();
         is_set = true;
-        val = var;
+        new(&val) T(var);
         var = new_value;
         adr = &var;
     }
